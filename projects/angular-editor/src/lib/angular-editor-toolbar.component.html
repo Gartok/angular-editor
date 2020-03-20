@@ -126,6 +126,11 @@
             title="Insert Link" [disabled]="isLinkButtonDisabled" [hidden]="isButtonHidden('link')" tabindex="-1">
       <i class="fa fa-link"></i>
     </button>
+    <button [id]="'link-'+id" type="button" class="angular-editor-button" (click)="insertSlide()"
+    title="Insert Link" [disabled]="isLinkButtonDisabled" [hidden]="isButtonHidden('link')" tabindex="-1">
+<i class="fa fa-link"></i>
+</button>
+
     <button [id]="'unlink-'+id" type="button" class="angular-editor-button" (click)="triggerCommand('unlink')"
             title="Unlink" [disabled]="htmlMode || !linkSelected" [hidden]="isButtonHidden('unlink')" tabindex="-1">
       <i class="fa fa-chain-broken"></i>

@@ -259,6 +259,19 @@ export class AngularEditorToolbarComponent {
     }
   }
 
+
+  /**
+   * insert URL link
+   */
+  insertSlide() {
+    this.execute.emit('');
+    const url = prompt('Nom du contenant', ``);
+    if (url) {
+      this.editorService.insertSlide(url);
+    }
+  }
+
+
   /**
    * insert Video link
    */

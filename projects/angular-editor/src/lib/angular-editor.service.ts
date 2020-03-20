@@ -1,8 +1,8 @@
-import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpEvent} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {DOCUMENT} from '@angular/common';
-import {CustomClass} from './config';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { CustomClass } from './config';
 
 export interface UploadResponse {
   imageUrl: string;
@@ -47,6 +47,15 @@ export class AngularEditorService {
       const newUrl = '<a href="' + url + '" target="_blank">' + this.selectedText + '</a>';
       this.insertHtml(newUrl);
     }
+  }
+
+  /**
+   * Create URL link
+   * @param url string from UI prompt
+   */
+  insertSlide(url: string) {
+    const newUrl = '<div class="collapse multi-collapse" id="' + url + '">' + this.selectedText + '</div>';
+    this.insertHtml(newUrl);
   }
 
   /**
@@ -250,7 +259,7 @@ export class AngularEditorService {
     } else {
       // Iterate nodes until we hit the end container
       while (node && node !== endNode) {
-        rangeNodes.push( node = this.nextNode(node) );
+        rangeNodes.push(node = this.nextNode(node));
       }
 
       // Add partially selected nodes at the start of the range
