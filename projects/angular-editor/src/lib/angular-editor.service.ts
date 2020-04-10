@@ -54,6 +54,7 @@ export class AngularEditorService {
    */
   insertSlide(url: string) {
     const newUrl = '<div class="collapse multi-collapse" id="' + url + '">' + this.selectedText + '</div>';
+    console.log(newUrl);
     this.insertHtml(newUrl);
   }
 
