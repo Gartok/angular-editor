@@ -49,6 +49,15 @@ export class AngularEditorService {
   }
 
   /**
+   * Create URL link
+   * @param url string from UI prompt
+   */
+  insertSlide(url: string) {
+    const newUrl = '<div class="collapse multi-collapse" id="' + url + '">' + this.selectedText + '</div>';
+    this.insertHtml(newUrl);
+  }
+
+  /**
    * insert color either font or background
    *
    * @param color color to be inserted

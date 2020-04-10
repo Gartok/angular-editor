@@ -1,8 +1,8 @@
-import {Component, ElementRef, EventEmitter, Inject, Output, Renderer2, ViewChild} from '@angular/core';
-import {AngularEditorService} from './angular-editor.service';
-import {HttpResponse} from '@angular/common/http';
-import {DOCUMENT} from '@angular/common';
-import {CustomClass, Font} from './config';
+import { Component, ElementRef, EventEmitter, Inject, Output, Renderer2, ViewChild } from '@angular/core';
+import { AngularEditorService } from './angular-editor.service';
+import { HttpResponse } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
+import { CustomClass, Font } from './config';
 
 @Component({
   selector: 'angular-editor-toolbar',
@@ -153,6 +153,18 @@ export class AngularEditorToolbarComponent {
   }
 
   /**
+  **
+   * insert URL link
+   */
+  insertSlide() {
+    this.execute.emit('');
+    const url = prompt('Nom du contenant', ``);
+    if (url) {
+      this.editorService.insertSlide(url);
+    }
+  }
+
+  /**
    * insert Video link
    */
   insertVideo() {
@@ -207,22 +219,22 @@ export class AngularEditorToolbarComponent {
   onFileChanged(event) {
     const file = event.target.files[0];
     if (file.type.includes('image/')) {
-        if (this.uploadUrl) {
-            this.editorService.uploadImage(file).subscribe(e => {
-              if (e instanceof HttpResponse) {
-                this.editorService.insertImage(e.body.imageUrl);
-                this.fileReset();
-              }
-            });
-        } else {
-          const reader = new FileReader();
-          reader.onload = (e: ProgressEvent) => {
-            const fr = e.currentTarget as FileReader;
-            this.editorService.insertImage(fr.result.toString());
-          };
-          reader.readAsDataURL(file);
-        }
+      if (this.uploadUrl) {
+        this.editorService.uploadImage(file).subscribe(e => {
+          if (e instanceof HttpResponse) {
+            this.editorService.insertImage(e.body.imageUrl);
+            this.fileReset();
+          }
+        });
+      } else {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent) => {
+          const fr = e.currentTarget as FileReader;
+          this.editorService.insertImage(fr.result.toString());
+        };
+        reader.readAsDataURL(file);
       }
+    }
   }
 
   /**

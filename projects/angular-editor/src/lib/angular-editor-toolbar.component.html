@@ -124,6 +124,10 @@
             title="Unlink" [disabled]="htmlMode || !linkSelected" tabindex="-1">
       <i class="fa fa-chain-broken"></i>
     </button>
+    <button [id]="'link-'+id" type="button" class="angular-editor-button" (click)="insertSlide()"
+    title="Insert Link" [disabled]="isLinkButtonDisabled" [hidden]="isButtonHidden('link')" tabindex="-1">
+<i class="fa fa-link"></i>
+</button>
     <input
       style="display: none"
       accept="image/*"
